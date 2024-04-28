@@ -5,5 +5,5 @@
 
 <h2>Convite</h2>
 <img src="https://github.com/jlvp000/bau-projetos/blob/main/HTMl-CSS/2-convite/imgProjetoConvite.png">
-<a href="https://github.com/jlvp000/bau-projetos/blob/main/HTMl-CSS/2-convite/imgProjetoConvite.html">meu código</a>
+<a href="https://github.com/jlvp000/bau-projetos/blob/main/HTMl-CSS/2-convite/projetoConvite.html">meu código</a>
 <hr/>
