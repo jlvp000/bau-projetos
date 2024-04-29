@@ -1,0 +1,122 @@
+html {
+	font-size: 62.5%;
+	font-family: serif;
+}
+
+body {
+	margin: 0;
+	padding-left: 270px;
+	min-width: 240px;
+	max-width: inherit;
+	font-size: 1.8rem;
+	line-height: 1.618;
+	background: #fff;
+	color: #4a4a4a;
+}
+
+header, footer {
+	font-size: large;
+	text-align: center;
+	padding: 0.3em 0;
+	margin-left: -270px;
+	background-color: #4a4a4a;
+	color: #f9f9f9;
+}
+
+nav {
+	position: fixed;
+	background: #eee;
+	width: 220px;
+	padding: 3px 10px;
+	border: 1px solid #44475a;
+	margin-top: 10px;
+	margin-left: -260px;
+}
+	
+main {
+	position: relative;
+	float: left;
+	padding: 0px;
+	width: 100%;
+}
+
+footer {clear: both;}
+
+h1 {font-size: 2.35em;}
+
+h2 {font-size: 2.00em;}
+
+h3 {font-size: 1.75em;}
+
+h4 {font-size: 1.50em;}
+
+h5 {font-size: 1.25em;}
+
+h6 {font-size: 1.00em;}
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1.1;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: 700;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	-ms-word-break: break-all;
+	word-break: break-word;
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+}
+
+table {
+	border: 1px solid #4a4a4a;
+	border-collapse: collapse;
+	background-color: #f5f5f5;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+}
+
+th {
+	background-color: #4a4a4a;
+	color: #f9f9f9;
+}
+
+tr:nth-child(even) {background-color: #ddd;}
+
+tr:hover {background-color: #ccc;}
+
+p {text-align: justify;}
+
+footer p {text-align: center;}
+
+footer a {color: #f9f9f9}
+
+a {text-decoration: none;}
+
+ol {padding-left: 10px;}
+
+li {
+	padding: 5px;
+	list-style-type: none;
+}
+
+li a {color: rgb(74, 74, 74);}
+
+li:hover {background-color: #ccc;}
+
+.receita {
+	background: #f9f9f9;
+	padding: 10px;
+	border: 1px solid #44475a;
+	margin: 10px 20px 5px 0px;
+}
+
+.receita h3 {
+	padding-bottom: 5px;
+	border-bottom: 3px solid #4a4a4a;
+}
