@@ -1,0 +1,143 @@
+body {
+	margin: 0;
+	background-color: #eee;
+	font-family: serif;
+}
+
+header, footer {
+	font-size: large;
+	text-align: center;
+	padding: 0.3em 0;
+	margin: 0;
+	background-color: #ccc;
+	color: #fff;
+}
+
+main{
+	background-color: #fff;
+	padding: 20px 50px;
+	margin: 20px auto;
+	width: 80%;
+}
+
+h1, h2 {
+	line-height: 1.1;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: 700;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	word-break: break-word;
+	-ms-word-break: break-all;
+	hyphens: auto;
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+}
+
+h1 {font-size: 2.35em;}
+
+h2 {font-size: 2.00em;}
+
+p {font-size: 1.25em;}
+
+span {font-weight: bold;}
+
+figure {
+	margin: 10px auto;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+img {
+	padding: 0;
+	margin: 0;
+	max-width: 70%;
+	max-height: 80%;
+}
+
+figcaption {
+	background-color: rgba(225, 225, 225, 0.5);
+	color: #000;
+	font: italic;
+	font-weight: bold;
+	padding: 3px;
+	margin: 5px 0px;
+	position: relative;
+	top: -50px;
+}
+
+.content {
+	text-align: justify;
+	margin: 25px auto;
+	width: 85%;	
+}
+
+.content h2 {
+	padding-bottom: 10px;
+	border-bottom: 2px dashed #dcdcdc;
+}
+
+.content li {
+	height: 40px;
+	font-size: 1.25em;
+}
+
+.quotes {
+	background-color: rgba(220, 220, 220, 0.5);
+	margin: 25px auto;
+	padding: 20px 20px 20px 50px;
+	border-left: 5px solid #ddd;
+	width: 85%;
+}
+
+.quotes blockquote {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.quotes p {font-style: italic;}
+
+.slider{
+	overflow: hidden;
+	text-align: center;
+	border: thin #c0c0c0 solid;
+	border-radius: 13px;
+	margin: 0px auto;
+	width: 90%;
+}
+
+.slider-item {
+	border-top: thin #c0c0c0 solid;
+	max-height: 500px;
+}
+
+.slider > .slider-content {
+	display: flex;
+	flex-wrap: nowrap;
+	width: 100%;
+	transition: all 500ms ease;
+}
+
+.slider > .slider-content > .slider-item {
+	flex: 0 0 auto;
+	width: 100%;
+	background-color: #ccc;
+}
+
+.slider > input:nth-child(1):checked ~ .slider-content {
+	transform: translateX(0%);
+}
+
+.slider > input:nth-child(2):checked ~ .slider-content {
+	transform: translateX(-100%);
+}
+.slider > input:nth-child(3):checked ~ .slider-content {
+	transform: translateX(-200%);
+}
+
+.slider > input:nth-child(4):checked ~ .slider-content {
+	transform: translateX(-300%);
+}
