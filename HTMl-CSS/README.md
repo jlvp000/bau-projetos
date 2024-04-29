@@ -1,5 +1,4 @@
 <h1>Meus projetos HTML e CSS</h1>
-<hr />
 
 <h2>Projeto convite</h2>
 <img src="">
@@ -11,7 +10,7 @@
 <a href="">meu código</a>
 <hr />
 
-<h2>projeto tributo a banda The Offspring</h2>
+<h2>Projeto tributo a banda The Offspring</h2>
 <img src="">
 <a href="">meu código</a>
 <hr />
