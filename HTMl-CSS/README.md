@@ -1,9 +1,17 @@
-<h2>Livro de receitas</h2>
-<img src="https://github.com/jlvp000/bau-projetos/blob/main/HTMl-CSS/1-livro-de-receitas/imgProjetoLivroReceitas.png">
-<a href="https://github.com/jlvp000/bau-projetos/blob/main/HTMl-CSS/1-livro-de-receitas/projetoLivroReceitas.html">meu código</a>
-<hr/>
+<h1>Meus projetos HTML e CSS</h1>
+<hr />
 
-<h2>Convite</h2>
-<img src="https://github.com/jlvp000/bau-projetos/blob/main/HTMl-CSS/2-convite/imgProjetoConvite.png">
-<a href="https://github.com/jlvp000/bau-projetos/blob/main/HTMl-CSS/2-convite/projetoConvite.html">meu código</a>
-<hr/>
+<h2>Projeto convite</h2>
+<img src="">
+<a href="">meu código</a>
+<hr />
+
+<h2>Projeto livro de receitas</h2>
+<img src="">
+<a href="">meu código</a>
+<hr />
+
+<h2>projeto tributo a banda The Offspring</h2>
+<img src="">
+<a href="">meu código</a>
+<hr />
