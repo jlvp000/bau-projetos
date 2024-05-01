@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="CSS/styles.css">
+		<title>Projeto: formulário venda de carros</title>
+	</head>
+	<body>
+		<main>
+			<!-- cabeçalho -->
+			<header>
+				<h1>Cadastre seu veículo para vender mais rápido.</h1>
+			</header>
+			<!-- conteúdo -->
+			<aside>
+				<div class="container-form">
+					<h3 class="section-title">Descreva as principais características de seu veículo preenchendo os campos abaixo e venda fácil seu carro.</h3>
+					<form>
+						<div>
+							<label for="first-name"><span>*</span>Nome</label>
+							<input type="text" name="first-name" id="first-name" placeholder="digite seu nome" required>
+						</div>
+						<div>
+							<label for="last-name"><span>*</span>Sobrenome</label>
+							<input type="text" name="last-name" id="last-name" placeholder="digite seu sobrenome" required>
+						</div>
+						<div>
+							<label for="brand"><span>*</span>Marca</label>
+							<input type="text" name="brand" id="brand" placeholder="digite a marca do veículo" required>
+						</div>
+						<div>
+							<label for="model"><span>*</span>Modelo</label>
+							<input type="text" name="model" id="model" placeholder="digite o modelo do veículo" required>
+						</div>
+						<div>
+							<label for="year"><span>*</span>Ano</label>
+							<input type="number" name="year" id="year" placeholder="ex.: 2010" required>
+						</div>
+						<div>
+							<label for="price"><span>*</span>Preço</label>
+							<input type="number" name="price" id="price" placeholder="ex.: R$ 19.000,00" required>
+						</div>
+						<div>
+							<label for="mileage"><span>*</span>Quilometros rodados</label>
+							<input type="number" name="mileage" id="mileage" placeholder="digite a quilometragem do veículo" required>
+						</div>
+						<div>
+							<label for="purchase_date"><span>*</span>Data de compra</label>
+							<input type="date" name="purchase_date" id="purchase_date" required>
+						</div>
+						<div>
+							<label><span>*</span>Tipo de câmbio</label>
+							<div class="container-column">
+								<div>
+									<input type="radio" id="manual" name="gear">
+									<label for="manual">Manual</label>
+								</div>
+								<div>
+									<input type="radio" id="auto" name="gear">
+									<label for="auto">Automático</label>
+								</div>
+							</div>
+						</div>
+						<div>
+							<label>Opcionais</label>
+							<div class="container-wrap">
+								<aside>
+									<input type="checkbox" id="airbag" name="optional[]" value="airbag">
+									<label for="airbag">Airbag</label>
+								</aside>
+								<aside>
+									<input type="checkbox" id="alarm" name="optional[]" value="alarm">
+									<label for="alarm">Alarme</label>
+								</aside>
+								<aside>
+									<input type="checkbox" id="ac" name="optional[]" value="ac">
+									<label for="ac">Ar Condicionado</label>
+								</aside>
+								<aside>
+									<input type="checkbox" id="reverse_camera" name="optional[]" value="reverse_camera">
+									<label for="reverse_camera">Câmera de Ré</label>
+								</aside>
+								<aside>
+									<input type="checkbox" id="lane_assist" name="optional[]" value="lane_assist">
+									<label for="lane_assist">Assistente de Pista</label>
+								</aside>
+								<aside>
+									<input type="checkbox" id="keyless" name="optional[]" value="keyless">
+									<label for="keyless">Partida Keyless</label>
+								</aside>
+								<aside>
+									<input type="checkbox" id="smartphone" name="optional[]" value="smartphone">
+									<label for="smartphone">Integração com Celular</label>
+								</aside>
+								<aside>
+									<input type="checkbox" id="leather_seat" name="optional[]" value="leather_seat">
+									<label for="leather_seat">Banco de Couro</label>
+								</aside>
+							</div>
+						</div>
+						<div>
+							<label for="title">Título do anúncio</label>
+							<input type="text" name="title" id="title" placeholder="ex.: vendo um gol 2010 em otimas condições">
+						</div>
+						<div>
+							<label for="description">Descrição</label>
+							<textarea name="description" id="description" placeholder="aqui você coloca os detalhes do veículo, ex.: se ele tem algum arranhão"></textarea>
+						</div>
+						<div>
+							<label><span>*</span>Fotos do carro:</label>
+							<input type="file" multiple accept="image/png, image/jpg" id="images" name="images" required>
+						</div>
+						<div class="btn-submit"><input type="submit" value="Enviar"></div>
+					</form>
+				</div>
+			</aside>
+		</main>
+		<footer>@jlvp000 - me siga nas redes sociais</footer>
+	</body>
+</html>
