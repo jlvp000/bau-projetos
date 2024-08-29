@@ -1,18 +1,13 @@
-
 #
 ## Funções auxiliares para uso no ambiente R
 #
 
 #-----------------------------------------------------------------------------------------
 # Função para gerar um resumo estatístico descritivo no ambiente R
-
-resumoEstatistico <- function(vetor, na.rm = FALSE){
-	# Verifica se o vetor de entrada é numérico após remover NAs se na.rm for TRUE
-	if (!is.numeric(vetor) || (na.rm && any(is.na(vetor)))) {
-		vetor <- vetor[!is.na(vetor)] # Remove NAs do vetor
-	}
+resEst <- function(vetor){
+	# Verifica se o vetor é numérico e contém pelo menos dois elementos
 	if (!is.numeric(vetor) || length(vetor) < 2) {
-		stop("O vetor de entrada deve ser numérico e conter mais de um elementos após remover NAs")
+		stop("O vetor de entrada deve ser numérico e conter mais de um elemento")
 	}
 
 	tamanho <- length(vetor)
@@ -47,7 +42,6 @@ resumoEstatistico <- function(vetor, na.rm = FALSE){
 
 #-----------------------------------------------------------------------------------------
 # Função para identificar valores atípicos (outliers) em um vetor
-
 deteOut <- function(vetor) {
 	# Verifica se o vetor é numérico e contém pelo menos dois elementos
 	if (!is.numeric(vetor) || length(vetor) < 2) {
@@ -72,9 +66,8 @@ deteOut <- function(vetor) {
 
 #-----------------------------------------------------------------------------------------
 # Função para remover outliers de um vetor
-
 remOut <- function(vetor) {
-	# Verifica se o vetor de entrada é numérico e maior que 1
+	# Verifica se o vetor é numérico e contém pelo menos dois elementos
 	if (!is.numeric(vetor) || length(vetor) < 2) {
 		stop("O vetor de entrada deve ser numérico e conter mais de um elementos")
 	}
