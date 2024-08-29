@@ -6,7 +6,7 @@
 
 <h2>Funções implementadas no arquivo:</h2>
 
-+ resumoEstatistico()
++ resEst()
 + deteOut()
 + remOut()
 
@@ -16,17 +16,15 @@
 > ```source("https://raw.githubusercontent.com/jlvp000/bau-projetos/main/R/funcAux.r")```
 
 <!-- -------------------------seção------------------------- -->
-<h2>resumoEstatistico()</h2>
+<h2>resEst()</h2>
 
 **Descrição:** Calcula a mediana, média, desvio padrão, valor mínimo e máximo, momentos centrais até 4ª ordem, quantis e percentis específicos de um  vetor. 
 
-**Uso:** resumoEstatistico(vetor)
-
+**Uso:** resEst(vetor)
 
 | Argumentos | Descrição |
 | :--- | :--- |
 | vetor | um vetor numérico |
-| na.rm = FALSE | uma booleano, indicando se os valores NAs devem ser removidos antes que o cálculo prossiga. Padrão é FALSE|
 
 **Exemplos**
 
@@ -34,21 +32,24 @@
 ## Exemplo 1:
 varA <- 2
 varB <- c("casa", "biscoito", "geladeira")
-resumoEstatistico(varA)
-resumoEstatistico(varB)
+resEst(varA)
+resEst(varB)
 
 ## Exemplo 2: 
 dados <- rnorm(1000, 30, 7)
-resumoEstatistico(dados)
-resumo <- resumoEstatistico(dados)
+resEst(dados)
+resumo <- resEst(dados)
 format(resumo, scientific=FALSE) #formatando o resumo estatístico para evitar a notação científica
 
 # Exemplo 3:
-arvores <- apply(trees, 2, resumoEstatistico)
+arvores <- apply(trees, 2, resEst)
 arvores
 
 ## Exemplo 4:
-resumoEstatistico(airquality[, 1])
+vetor <- airquality[, 1]
+resEst(vetor)
+vetor <- vetor[!is.na(vetor)] # Remove NAs do vetor
+resEst(vetor)
 ```
 
 <!-- -------------------------seção------------------------- -->
