@@ -4,7 +4,7 @@
 
 #-----------------------------------------------------------------------------------------
 # Função para gerar um resumo estatístico
-resumoEstatistico <- function(vetor, na.rm = TRUE){
+resumoEstatistico <- function(vetor, na.rm = FALSE){
 	# Verifica se o vetor de entrada é numérico após remover NAs se na.rm for TRUE
 	if (!is.numeric(vetor) || (na.rm && any(is.na(vetor)))) {
 		vetor <- vetor[!is.na(vetor)] # Remove NAs do vetor
