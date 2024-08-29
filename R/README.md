@@ -96,10 +96,10 @@ dados <- c(10, 11, 9, 10, 11, 50, 9, 10)
 dados_sem_outliers <- remOut(dados)
 
 # Exibir o conjunto de dados original e o filtrado
-print(dados)
-print(dados_sem_outliers)
-# Original:  10 11  9 10 11 50  9 10
-# Sem outliers: 10 11  9 10 11  9 10
+dados
+dados_sem_outliers
+# > 10 11  9 10 11 50  9 10
+# > 10 11  9 10 11  9 10
 ```
 
 <!-- -------------------------seção------------------------- -->
