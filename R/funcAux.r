@@ -48,7 +48,7 @@ resumoEstatistico <- function(vetor, na.rm = FALSE){
 #-----------------------------------------------------------------------------------------
 # Função para identificar valores atípicos (outliers) em um vetor
 
-deteOutl <- function(vetor) {
+deteOut <- function(vetor) {
 	# Verifica se o vetor é numérico e contém pelo menos dois elementos
 	if (!is.numeric(vetor) || length(vetor) < 2) {
 		stop("O vetor de entrada deve ser numérico e conter mais de um elemento")
@@ -80,7 +80,7 @@ remOut <- function(vetor) {
 	}
 
 	# Identifica outliers
-	indicadores_outliers <- deteOutl(vetor)
+	indicadores_outliers <- deteOut(vetor)
   
 	# Retorna o vetor filtrado sem os outliers
 	return(vetor[!indicadores_outliers])
