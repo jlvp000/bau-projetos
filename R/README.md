@@ -9,6 +9,7 @@
 + resEst()
 + deteOut()
 + remOut()
++ remOutGrup()
 
 > [!NOTE]
 > Para conseguir usar as funções, baixe o arquivo com o seguinte código:
@@ -100,6 +101,47 @@ dados
 dados_sem_outliers
 # > 10 11  9 10 11 50  9 10
 # > 10 11  9 10 11  9 10
+```
+
+<!-- -------------------------seção------------------------- -->
+<h2>remOutGrup()</h2>
+
+**Descrição:** remover outliers de um conjunto de dados agrupados por fatores usando a função `deteOut()`.
+
+**Uso:** remOutGrup(dados, indices_fatores, indice_resposta)
+
+| Argumentos | Descrição |
+| :--- | :--- |
+| dados | Dados de entrada com o(s) fator(es) e variável resposta. Argumento deve ser do tipo `data.freme` |
+| indices_fatores | Índice(s) da(s) coluna(s) com fator(es) |
+| indice_resposta | Índice da coluna com variável resposta |
+
+**Exemplos**
+
+```
+# Criar um conjunto de dados simulado
+dados <- data.frame(
+	fator1 = sample(c("F1_A", "F1_B", "F1_C"), 100, replace = TRUE),
+	fator2 = sample(c("F2_A", "F2_B"), 100, replace = TRUE),
+	resposta = rnorm(100, mean = 10, sd = 2)
+)
+
+# Adicionando outliers em posições aleatórias
+dados$resposta[sample(1:nrow(dados), 5)] <- rnorm(5, mean = 30, sd = 7)
+
+# Remover outliers
+dados_limpos <- remOutGrup(
+	dados,
+	indices_fatores = 1:2,	# Índices das colunas dos fatores
+	indice_resposta = 3	# Índice da coluna de resposta
+)
+
+# Visualizando dados
+par(mfrow = c(2, 2), mar=c(2, 2, 2.5, 1))
+boxplot(resposta ~ fator1, data=dados, main="Com outlier")
+boxplot(resposta ~ fator1, data=dados_limpos, main="Sem outlier")
+boxplot(resposta ~ fator2, data=dados)
+boxplot(resposta ~ fator2, data=dados_limpos)
 ```
 
 <!-- -------------------------seção------------------------- -->
