@@ -7,7 +7,7 @@
 [resumoEstatistico()](https://github.com/jlvp000/bau-projetos/edit/main/R/README.md#resumoestatistico)
 
 > [!NOTE]
-> Para conseguir usar as funções, baixo o arquivo com o seguinte código:
+> Para conseguir usar as funções, baixe o arquivo com o seguinte código:
 > 
 > ```source("https://raw.githubusercontent.com/jlvp000/bau-projetos/main/R/funcAux.r")```
 
