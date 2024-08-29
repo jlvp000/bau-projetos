@@ -33,7 +33,7 @@ Graf_Apres <- function(vetor_dados, nome_grafico, nome_variavel, unidade_medida)
 
 	# Determinação dos limites do eixo y para o histograma
 	densidade_dados <- density(vetor_dados)
-	limite_superior_y <- calClass(round(max(densidade_dados$y), 3), seq(0.005, 1, 0.005))
+	limite_superior_y <- calClass(round(max(densidade_dados$y), 3), seq(0.05, 1, 0.05))
 
 	# Inicialização da janela gráfica
 	windows(7, 7)
