@@ -3,14 +3,15 @@
 #
 
 #-----------------------------------------------------------------------------------------
-# Função para gerar um resumo estatístico
+# Função para gerar um resumo estatístico descritivo no ambiente R
+
 resumoEstatistico <- function(vetor, na.rm = FALSE){
 	# Verifica se o vetor de entrada é numérico após remover NAs se na.rm for TRUE
 	if (!is.numeric(vetor) || (na.rm && any(is.na(vetor)))) {
 		vetor <- vetor[!is.na(vetor)] # Remove NAs do vetor
 	}
 	if (!is.numeric(vetor) || length(vetor) < 2) {
-		stop("O vetor de entrada deve ser numérico e ter pelo menos dois elementos após remover NAs.")
+		stop("O vetor de entrada deve ser numérico e ter pelo menos dois elementos após remover NAs")
 	}
 
 	tamanho <- length(vetor)
@@ -42,5 +43,32 @@ resumoEstatistico <- function(vetor, na.rm = FALSE){
 	# Retorna o data frame com o resumo estatístico
 	return(resumo)
 }
+
+#-----------------------------------------------------------------------------------------
+# Função para identificar valores atípicos (outliers) em um conjunto de dados
+
+deteOutl <- function(vetor) {
+	# Verifica se o conjunto de dados é numérico e contém pelo menos dois elementos
+	if (!is.numeric(vetor) || length(vetor) < 2) {
+		stop("O conjunto de dados deve ser numérico e conter mais de um elemento")
+	}
+
+	# Calcula o primeiro e o terceiro quartis
+	primeiro_quartil <- quantile(vetor, probs = 0.25)
+	terceiro_quartil <- quantile(vetor, probs = 0.75)
+  
+	# Calcula a amplitude interquartílica (IQR)
+	iqr <- terceiro_quartil - primeiro_quartil
+
+	# Define os limites inferior e superior para identificação de outliers
+	limite_inferior <- primeiro_quartil - (1.5 * iqr)
+	limite_superior <- terceiro_quartil + (1.5 * iqr)
+
+	# Retorna um vetor lógico indicando quais dados são outliers
+	# Verdadeiro para outliers, Falso para dados dentro do intervalo normal
+	return(vetor < limite_inferior | vetor > limite_superior)
+}
+
+
 
 #-----------------------------------------------------------------------------------------
