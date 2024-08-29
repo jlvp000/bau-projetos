@@ -7,7 +7,7 @@
 resEst <- function(vetor){
 	# Verifica se o vetor é numérico e contém pelo menos dois elementos
 	if (!is.numeric(vetor) || length(vetor) < 2) {
-		stop("O vetor de entrada deve ser numérico e conter mais de um elemento")
+		stop("O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
 	}
 
 	tamanho <- length(vetor)
@@ -45,7 +45,7 @@ resEst <- function(vetor){
 deteOut <- function(vetor) {
 	# Verifica se o vetor é numérico e contém pelo menos dois elementos
 	if (!is.numeric(vetor) || length(vetor) < 2) {
-		stop("O vetor de entrada deve ser numérico e conter mais de um elemento")
+		stop("O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
 	}
 
 	# Calcula o primeiro e o terceiro quartis
@@ -69,7 +69,7 @@ deteOut <- function(vetor) {
 remOut <- function(vetor) {
 	# Verifica se o vetor é numérico e contém pelo menos dois elementos
 	if (!is.numeric(vetor) || length(vetor) < 2) {
-		stop("O vetor de entrada deve ser numérico e conter mais de um elementos")
+		stop("O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
 	}
 
 	# Identifica outliers
