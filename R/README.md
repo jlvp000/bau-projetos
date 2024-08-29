@@ -1,4 +1,17 @@
-<h1>resumoEstatistico()</h1>
+<h1>Arquivo com funções para auxiliar em trabalhos</h1>
+
+<p>Olá, turma. Criei esse arquivo com algumas funções que acredito que serão uma mão na roda para auxiliar nos trabalhos diários em R. Confira As funções implementadas:</p>
+
+<h2>Funções implementadas no arquivo:</h2>
+
+[resumoEstatistico()](https://github.com/jlvp000/bau-projetos/edit/main/R/README.md#resumoestatistico)
+
+> [!NOTE]
+> Para conseguir usar as funções, baixo o arquivo com o seguinte código:
+> 
+> ```source("https://raw.githubusercontent.com/jlvp000/bau-projetos/main/R/funcAux.r")```
+
+<h2>resumoEstatistico()</h2>
 
 **Descrição**
 <p>A função calcula a mediana, média, desvio padrão, valor mínimo e máximo, momentos centrais até 4ª ordem, quantis e percentis específicos de um  vetor.</p>
