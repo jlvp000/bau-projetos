@@ -80,3 +80,47 @@ remOut <- function(vetor) {
 }
 
 #-----------------------------------------------------------------------------------------
+# Função para remover outliers de um conjunto de dados agrupados por fatores
+remOutGrup <- function(dados, indices_fatores, indice_resposta) {
+	# Verificar se o argumento 'dados' é um dataframe
+	if (!is.data.frame(dados)) {
+		stop("O argumento 'dados' deve ser um objeto do tipo 'data.frame'")
+	}
+	# Verificar se os índices são numéricos
+	if (!is.numeric(indices_fatores) || !is.numeric(indice_resposta)) {
+		stop("Os argumentos 'indices_fatores' e 'indice_resposta' devem ser numéricos")
+	}
+	# Verificar se os índices de colunas são válidos
+	if (any(indices_fatores > ncol(dados)) || indice_resposta > ncol(dados)) {
+		stop("Índices de colunas são inválidos")
+	}
+
+	# Inicializar matriz para contar outliers por nível dos fatores
+	contagem_outliers <- matrix(ncol = length(indices_fatores), nrow = nrow(dados), data = 0)
+
+	# Iterar sobre cada coluna de fator
+	for (indice_fator in indices_fatores) {
+		# Identificar os níveis do fator
+		niveis_fator <- levels(as.factor(dados[[indice_fator]]))
+
+		# Para cada nível, identificar e contar outliers na coluna de resposta
+		for (nivel in niveis_fator) {
+			# Filtrar dados para o nível atual do fator
+			dados_atual <- dados[dados[[indice_fator]] == nivel, ]
+			# Identificar valores outliers na coluna de resposta
+			valores_outliers <- deteOut(dados_atual[[indice_resposta]])
+			# Contar outliers e atribuir na matriz
+			contagem_outliers[dados[[indice_fator]] == nivel, which(indices_fatores == indice_fator)] <- valores_outliers
+		}
+	}
+
+	# Calcular o total de outliers por linha
+	soma_outliers <- apply(contagem_outliers, 1, sum)
+
+	# Filtrar e retornar o dataframe sem os outliers
+	dados_sem_outliers <- dados[soma_outliers == 0, ]
+
+	return(dados_sem_outliers)
+}
+
+#-----------------------------------------------------------------------------------------
