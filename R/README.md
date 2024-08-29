@@ -1,10 +1,11 @@
 <h1>Arquivo com funções para auxiliar em trabalhos</h1>
 
-<p>Olá, turma. Criei esse arquivo com algumas funções que acredito que serão uma mão na roda para auxiliar nos trabalhos diários em R. Confira As funções implementadas:</p>
+<p>Olá, turma. Criei esse arquivo com algumas funções que acredito que serão uma mão na roda para auxiliar nos trabalhos diários em R. Confira as funções implementadas:</p>
 
 <h2>Funções implementadas no arquivo:</h2>
 
-[resumoEstatistico()](https://github.com/jlvp000/bau-projetos/edit/main/R/README.md#resumoestatistico)
++ resumoEstatistico()
++ deteOutl()
 
 > [!NOTE]
 > Para conseguir usar as funções, baixe o arquivo com o seguinte código:
@@ -13,26 +14,15 @@
 
 <h2>resumoEstatistico()</h2>
 
-**Descrição**
-<p>A função calcula a mediana, média, desvio padrão, valor mínimo e máximo, momentos centrais até 4ª ordem, quantis e percentis específicos de um  vetor.</p>
+**Descrição:** Calcula a mediana, média, desvio padrão, valor mínimo e máximo, momentos centrais até 4ª ordem, quantis e percentis específicos de um  vetor. 
 
-**Uso**
+**Uso:** resumoEstatistico(vetor)
 
-  resumoEstatistico(vetor)
-  
-  '# Padrão:'
-  
-  resumoEstatistico(vetor, na.rm = FALSE)
 
-**Argumentos**
-
-  X:
-  
-  um vetor numérico
-    
-  na.rm = TRUE:
-  
-  uma booleano, indicando se os valores NA devem ser removidos antes que o cálculo prossiga.
+| Argumentos | Descrição |
+| :--- | :--- |
+| vetor | um vetor numérico |
+| na.rm = FALSE | uma booleano, indicando se os valores NAs devem ser removidos antes que o cálculo prossiga. Padrão é FALSE|
 
 **Exemplos**
 
@@ -55,4 +45,27 @@ arvores
 
 ## Exemplo 4:
 resumoEstatistico(airquality[, 1])
+```
+
+<h2>deteOutl()</h2>
+
+**Descrição:** Detecta outliers em um vetor numérico usando o método dos quantis.
+
+**Uso:** deteOutl(vetor)
+
+| Argumentos | Descrição |
+| :--- | :--- |
+| vetor | um vetor número |
+
+**Exemplos**
+
+```
+# Conjunto de dados numéricos com outliers
+dados <- c(10, 11, 9, 10, 11, 50, 9, 10)
+
+# Identificação de outliers
+outliers <- deteOutl(dados_normais)
+
+# Se houver ao menos um outlier, retorna TRUE
+any(outliers)
 ```
