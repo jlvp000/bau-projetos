@@ -1,3 +1,4 @@
+
 #
 ## Funções auxiliares para uso no ambiente R
 #
@@ -11,7 +12,7 @@ resumoEstatistico <- function(vetor, na.rm = FALSE){
 		vetor <- vetor[!is.na(vetor)] # Remove NAs do vetor
 	}
 	if (!is.numeric(vetor) || length(vetor) < 2) {
-		stop("O vetor de entrada deve ser numérico e ter pelo menos dois elementos após remover NAs")
+		stop("O vetor de entrada deve ser numérico e conter mais de um elementos após remover NAs")
 	}
 
 	tamanho <- length(vetor)
@@ -45,12 +46,12 @@ resumoEstatistico <- function(vetor, na.rm = FALSE){
 }
 
 #-----------------------------------------------------------------------------------------
-# Função para identificar valores atípicos (outliers) em um conjunto de dados
+# Função para identificar valores atípicos (outliers) em um vetor
 
 deteOutl <- function(vetor) {
-	# Verifica se o conjunto de dados é numérico e contém pelo menos dois elementos
+	# Verifica se o vetor é numérico e contém pelo menos dois elementos
 	if (!is.numeric(vetor) || length(vetor) < 2) {
-		stop("O conjunto de dados deve ser numérico e conter mais de um elemento")
+		stop("O vetor de entrada deve ser numérico e conter mais de um elemento")
 	}
 
 	# Calcula o primeiro e o terceiro quartis
@@ -69,6 +70,20 @@ deteOutl <- function(vetor) {
 	return(vetor < limite_inferior | vetor > limite_superior)
 }
 
+#-----------------------------------------------------------------------------------------
+# Função para remover outliers de um vetor
 
+remOut <- function(vetor) {
+	# Verifica se o vetor de entrada é numérico e maior que 1
+	if (!is.numeric(vetor) || length(vetor) < 2) {
+		stop("O vetor de entrada deve ser numérico e conter mais de um elementos")
+	}
+
+	# Identifica outliers
+	indicadores_outliers <- deteOutl(vetor)
+  
+	# Retorna o vetor filtrado sem os outliers
+	return(vetor[!indicadores_outliers])
+}
 
 #-----------------------------------------------------------------------------------------
