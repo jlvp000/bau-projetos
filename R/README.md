@@ -200,6 +200,9 @@ ks_teste(trees$Girth)
 **Exemplos**
 
 ```
+# ver limites dos eixos
+hist(trees$Girth, prob=TRUE)
+
 gApre(
 	# VarE: Seleciona a coluna 'Girth' do conjunto de dados 'trees'.
 	trees$Girth, 
