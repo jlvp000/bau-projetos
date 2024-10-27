@@ -3,7 +3,7 @@
 #
 
 #-----------------------------------------------------------------------------------------
-# Função para gerar um resumo estatístico descritivo no ambiente R
+# Função para gerar um resumo estatístico descritivo
 resEst <- function(vetor){
 	# Verifica se o vetor é numérico e contém pelo menos dois elementos
 	if (!is.numeric(vetor) || length(vetor) < 2) {
@@ -38,6 +38,19 @@ resEst <- function(vetor){
 
 	# Retorna o data frame com o resumo estatístico
 	return(resumo)
+}
+
+#-----------------------------------------------------------------------------------------
+## Função para estatísticas descritivas simples de um data.frame
+resEstSim <- function(data) {
+	est <- data.frame(
+		minimo = apply(data, 2, min, na.rm = TRUE),
+		mediana = apply(data, 2, median, na.rm = TRUE),
+		maximo = apply(data, 2, max, na.rm = TRUE),
+		media = apply(data, 2, mean, na.rm = TRUE),
+		desvio_padrao = apply(data, 2, sd, na.rm = TRUE)
+	)
+	return(round(est, 4))
 }
 
 #-----------------------------------------------------------------------------------------
@@ -125,7 +138,6 @@ remOutGrup <- function(dados, indices_fatores, indice_resposta) {
 
 #------------------------------------------------------------------------
 ## Função para teste de Kolmogorov-Smirnov e assimetria de Bowley
-
 ks_teste <- function(VarE) {
 
 	# Teste de Kolmogorov-Smirnov
@@ -166,7 +178,6 @@ ks_teste_g <- function(VarE) {
 
 #-------------------------------------------------------------------------
 ## Função do Gráfico de apresentação
-
 gApre <- function(VarE, xlim, ylim, xlab, posicao1, posicao2){
 
 	 n  <- length(VarE)
@@ -181,17 +192,13 @@ gApre <- function(VarE, xlim, ylim, xlab, posicao1, posicao2){
 
 	windows(7, 4)
 	par(mar=c(3, 3.2, 1, 1))
-	hist(VarE, prob=T, xlim=xlim, ylim=c(0, ylim), breaks=legH1, right=F,
-		xaxp=c(xlim[1], xlim[2], 5), yaxp=c(0, ylim, 6), main="",
-		xlab=xlab, ylab="", mgp=c(1.5, 0.7, 0),
-		border=0, col="lightgrey", font.lab=2, font.axis=2,
+	hist(VarE, prob=T, xlim=xlim, ylim=c(0, ylim), breaks=legH1, right=F xaxp=c(xlim[1], xlim[2], 5), yaxp=c(0, ylim, 6), main="",
+		xlab=xlab, ylab="", mgp=c(1.5, 0.7, 0), border=0, col="lightgrey", font.lab=2, font.axis=2,
 		las=1, cex.axis=1, xaxs="i", yaxs="i", bty="n")
 	#curva normal teorica
-	plot(function(x) dnorm(x, med, des), from=inf, to=sup, 
-		col="red", lty=4, lwd=2, add=TRUE)
+	plot(function(x) dnorm(x, med, des), from=inf, to=sup, col="red", lty=4, lwd=2, add=TRUE)
 	#legendas
-	legend(posicao1, "normal teórica",
-		col="red", lty=4, lwd=2, cex=1.2, bty="n")
+	legend(posicao1, "normal teórica", col="red", lty=4, lwd=2, cex=1.2, bty="n")
 	legend(posicao2, ks_teste_g(VarE), cex=1.2, bty="n")
 }
 
