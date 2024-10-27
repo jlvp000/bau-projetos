@@ -7,6 +7,7 @@
 <h2>Funções implementadas no arquivo:</h2>
 
 + resEst()
++ ‎resEstSim()
 + deteOut()
 + remOut()
 + remOutGrup()
@@ -53,6 +54,23 @@ vetor <- airquality[, 1]
 resEst(vetor)
 vetor <- vetor[!is.na(vetor)] # Remove NAs do vetor
 resEst(vetor)
+```
+
+<!-- -------------------------seção------------------------- -->
+<h2>‎‎resEstSim()</h2>
+
+**Descrição:** Calcula a mediana, média, desvio padrão, valor mínimo e máximo das colunas de um data.frame.
+
+**Uso:** resEstSim(data.frame)
+
+| Argumentos | Descrição |
+| :--- | :--- |
+| data.frame | data.frame numérico |
+
+**Exemplos**
+
+```
+resEstSim(iris[, 1:4])
 ```
 
 <!-- -------------------------seção------------------------- -->
