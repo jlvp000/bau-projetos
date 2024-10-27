@@ -192,7 +192,7 @@ gApre <- function(VarE, xlim, ylim, xlab, posicao1, posicao2){
 
 	windows(7, 4)
 	par(mar=c(3, 3.2, 1, 1))
-	hist(VarE, prob=T, xlim=xlim, ylim=c(0, ylim), breaks=legH1, right=F xaxp=c(xlim[1], xlim[2], 5), yaxp=c(0, ylim, 6), main="",
+	hist(VarE, prob=T, xlim=xlim, ylim=c(0, ylim), breaks=legH1, right=F, xaxp=c(xlim[1], xlim[2], 5), yaxp=c(0, ylim, 6), main="",
 		xlab=xlab, ylab="", mgp=c(1.5, 0.7, 0), border=0, col="lightgrey", font.lab=2, font.axis=2,
 		las=1, cex.axis=1, xaxs="i", yaxs="i", bty="n")
 	#curva normal teorica
