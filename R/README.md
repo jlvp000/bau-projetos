@@ -106,7 +106,7 @@ dados_sem_outliers
 <!-- -------------------------seção------------------------- -->
 <h2>remOutGrup()</h2>
 
-**Descrição:** remover outliers de um conjunto de dados agrupados por fatores usando a função `deteOut()`.
+**Descrição:** Remove outliers de um conjunto de dados agrupados por fatores usando a função `deteOut()`.
 
 **Uso:** remOutGrup(dados, indices_fatores, indice_resposta)
 
@@ -145,3 +145,35 @@ boxplot(resposta ~ fator2, data=dados_limpos)
 ```
 
 <!-- -------------------------seção------------------------- -->
+<h2>ks_teste()</h2>
+
+**Descrição:** Imprime os resultados do teste KS, incluindo a estatística D e o p-valor, bem como o valor da assimetria de Bowley.
+
+**Uso:** ks_teste(vetor)
+
+| Argumentos | Descrição |
+| :--- | :--- |
+| vetor | um vetor número |
+
+**Exemplos**
+
+```
+# Aplicando a função ao conjunto de dados trees
+ks_teste(trees$Girth)
+```
+
+<!-- -------------------------seção------------------------- -->
+<h2>‎gApre()</h2>
+
+**Descrição:** Realiza a plotagem de um histograma para um vetor de uma variável, juntamente com uma curva normal teórica, teste KS e assimetria de Bowley.
+
+**Uso:** gApre(xlim, ylim, xlab, posicao1, posicao2)
+
+| Argumentos | Descrição |
+| :--- | :--- |
+|VarE | Uma variável numérica para a qual o histograma será gerado |
+|xlim |	Um vetor de dois elementos que define os limites inferior e superior do eixo x do gráfico |
+|ylim |	Um valor numérico que define o limite superior do eixo y do gráfico |
+|xlab | Um rótulo de texto para o eixo x do gráfico.
+|posicao1 | A posição para inserir a legenda da curva normal teórica.
+|posicao2 | A posição para inserir a legenda do resultado do teste de normalidade.
