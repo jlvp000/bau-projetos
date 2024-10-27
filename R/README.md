@@ -91,7 +91,7 @@ resEstSim(iris[, 1:4])
 dados <- c(10, 11, 9, 10, 11, 50, 9, 10)
 
 # Identificação de outliers
-outliers <- deteOut(dados_normais)
+outliers <- deteOut(dados)
 
 # Se houver ao menos um outlier, retorna TRUE
 any(outliers)
