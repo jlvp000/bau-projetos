@@ -10,6 +10,8 @@
 + deteOut()
 + remOut()
 + remOutGrup()
++ ks_teste()
++ gApre()
 
 > [!NOTE]
 > Para conseguir usar as funções, baixe o arquivo com o seguinte código:
