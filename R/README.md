@@ -174,6 +174,26 @@ ks_teste(trees$Girth)
 |VarE | Uma variável numérica para a qual o histograma será gerado |
 |xlim |	Um vetor de dois elementos que define os limites inferior e superior do eixo x do gráfico |
 |ylim |	Um valor numérico que define o limite superior do eixo y do gráfico |
-|xlab | Um rótulo de texto para o eixo x do gráfico.
-|posicao1 | A posição para inserir a legenda da curva normal teórica.
-|posicao2 | A posição para inserir a legenda do resultado do teste de normalidade.
+|xlab | Um rótulo de texto para o eixo x do gráfico |
+|posicao1 | A posição para inserir a legenda da curva normal teórica |
+|posicao2 | A posição para inserir a legenda do resultado do teste de normalidade |
+
+**Exemplos**
+
+```
+gApre(
+	# VarE: Seleciona a coluna 'Girth' do conjunto de dados 'trees'.
+	trees$Girth, 
+	# xlim: Define os limites do eixo x para o intervalo de 5 a 25.
+	xlim=c(5, 25), 
+	# ylim: Define o limite superior do eixo y para 0.25.
+	ylim=0.25, 
+	# xlab: Define o rótulo do eixo x como "Girth Trees".
+	xlab="Girth Trees", 
+	# posicao1: Define a posição da legenda da curva normal teórica para o lado direito.
+	posicao1="right", 
+	# posicao2: Define a posição da legenda do resultado do teste de normalidade para o canto superior direito.
+	posicao2="topright"
+)
+```
+
