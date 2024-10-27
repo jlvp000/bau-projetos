@@ -215,3 +215,30 @@ gApre(
 )
 ```
 
+<!-- -------------------------seção------------------------- -->
+<h2>‎res_r2_syx()</h2>
+
+**Descrição:** Calcula o coeficiente de determinação (R²), erro padrão do modelos (Syx) e resíduos.
+
+**Uso:** ‎res_r2_syx(y_medido, y_predito)
+
+| Argumentos | Descrição |
+| :--- | :--- |
+
+
+**Exemplos**
+
+```
+mod <- lm(trees$Height ~ trees$Girth)
+
+estMod <- res_r2_syx(trees$Height, predict(mod))
+
+# Coeficiente de determinação - R²
+estMod$R2
+
+# Erro padrão
+estMod$Syx
+
+# gráfico de resíduos
+plot(predict(mod), estMod$residuos)
+```
