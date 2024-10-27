@@ -219,7 +219,7 @@ gApre(
 <!-- -------------------------seção------------------------- -->
 <h2>‎res_r2_syx()</h2>
 
-**Descrição:** Calcula o coeficiente de determinação (R²), erro padrão do modelos (Syx) e resíduos.
+**Descrição:** Calcula o coeficiente de determinação (R²), erro padrão do modelo (Syx) e resíduos.
 
 **Uso:** ‎res_r2_syx(y_medido, y_predito)
 
