@@ -13,6 +13,7 @@
 + remOutGrup()
 + ks_teste()
 + gApre()
++ ‎res_r2_syx()
 
 > [!NOTE]
 > Para conseguir usar as funções, baixe o arquivo com o seguinte código:
@@ -224,6 +225,8 @@ gApre(
 
 | Argumentos | Descrição |
 | :--- | :--- |
+| y_medido | Valores reais ou observados da variável resposta |
+| y_predito | Valores previstos ou estimados pela modelagem ou método de previsão |
 
 
 **Exemplos**
@@ -242,3 +245,5 @@ estMod$Syx
 # gráfico de resíduos
 plot(predict(mod), estMod$residuos)
 ```
+
+<!-- -------------------------seção------------------------- -->
