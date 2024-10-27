@@ -123,4 +123,76 @@ remOutGrup <- function(dados, indices_fatores, indice_resposta) {
 	return(dados_sem_outliers)
 }
 
-#-----------------------------------------------------------------------------------------
+#------------------------------------------------------------------------
+## Função para teste de Kolmogorov-Smirnov e assimetria de Bowley
+
+ks_teste <- function(VarE) {
+
+	# Teste de Kolmogorov-Smirnov
+	VarE_jittered <- jitter(VarE)
+	teste_KS <- ks.test(VarE_jittered, "pnorm", mean(VarE), sd(VarE))
+	
+	# Assimetria de Bowley
+	quan <- quantile(VarE)
+	AsB <- (quan[[4]] + quan[[2]] - (2 * quan[[3]])) / (quan[[4]] - quan[[2]])
+
+	cat("teste K-S:\n")
+	cat("D = ", round(teste_KS$statistic, 4), "\n")
+	cat("p-valor = " , round(teste_KS$p.value, 4), "\n")
+	cat("Assimetria de Bowley:\n")
+	cat("AsB = ", round(AsB, 4), "\n")
+}
+
+ks_teste_g <- function(VarE) {
+
+	# Teste de Kolmogorov-Smirnov 
+	VarE_jittered <- jitter(VarE)
+	teste_KS <- ks.test(VarE_jittered, "pnorm", mean(VarE), sd(VarE))
+	
+	# Assimetria de Bowley
+	quan <- quantile(VarE)
+	AsB <- (quan[[4]] + quan[[2]] - (2 * quan[[3]])) / (quan[[4]] - quan[[2]])
+
+	return(
+		c(
+			expression(bold("teste K-S:")),
+			paste0("D = ", round(teste_KS$statistic, 4)),
+			paste0("p-valor = " , round(teste_KS$p.value, 4)),
+			expression(bold("Assimetria de Bowley:")),
+			paste0("AsB = ", round(AsB, 4))
+		)
+	)
+}
+
+#-------------------------------------------------------------------------
+## Função do Gráfico de apresentação
+
+gApre <- function(VarE, xlim, ylim, xlab, posicao1, posicao2){
+
+	 n  <- length(VarE)
+	inf <- min(VarE)
+	sup <- max(VarE)
+	med <- mean(VarE)
+	des <- sd(VarE)
+
+	    k <- ceiling((2*(n^(1/3))))
+	   h1 <- (sup-inf)/k
+	legH1 <- seq(inf, sup, h1)
+
+	windows(7, 4)
+	par(mar=c(3, 3.2, 1, 1))
+	hist(VarE, prob=T, xlim=xlim, ylim=c(0, ylim), breaks=legH1, right=F,
+		xaxp=c(xlim[1], xlim[2], 5), yaxp=c(0, ylim, 6), main="",
+		xlab=xlab, ylab="", mgp=c(1.5, 0.7, 0),
+		border=0, col="lightgrey", font.lab=2, font.axis=2,
+		las=1, cex.axis=1, xaxs="i", yaxs="i", bty="n")
+	#curva normal teorica
+	plot(function(x) dnorm(x, med, des), from=inf, to=sup, 
+		col="red", lty=4, lwd=2, add=TRUE)
+	#legendas
+	legend(posicao1, "normal teórica",
+		col="red", lty=4, lwd=2, cex=1.2, bty="n")
+	legend(posicao2, ks_teste_g(VarE), cex=1.2, bty="n")
+}
+
+#-------------------------------------------------------------------------
