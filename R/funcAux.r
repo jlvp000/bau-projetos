@@ -202,4 +202,20 @@ gApre <- function(VarE, xlim, ylim, xlab, posicao1, posicao2){
 	legend(posicao2, ks_teste_g(VarE), cex=1.2, bty="n")
 }
 
+#----------------------------------------------------------------------
+## Função para cálculo de resíduos e R² e Syx
+res_r2_syx <- function(y_medido, y_predito) {
+	if (length(y_medido) != length(y_predito)) {
+		stop("Erro: Tamanho de y_medido e y_predito são diferentes!")
+	}
+
+	residuos <- y_medido - y_predito
+	SST <- sum((y_medido - mean(y_medido))^2)
+	SSR <- sum(residuos^2)
+	R2 <- 1 - (SSR / SST)
+	Syx <- sqrt(SSR / (length(y_medido)-2))
+  
+	return(list(R2 = R2, Syx = Syx, residuos = residuos))
+}
+
 #-------------------------------------------------------------------------
