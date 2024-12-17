@@ -167,10 +167,10 @@ ks_teste_g <- function(VarE) {
 
 	return(
 		c(
-			expression(bold("teste K-S:")),
+			expression(bold("K-S test:")),
 			paste0("D = ", round(teste_KS$statistic, 4)),
 			paste0("p-valor = " , round(teste_KS$p.value, 4)),
-			expression(bold("Assimetria de Bowley:")),
+			expression(bold("Bowley's Skewness:")),
 			paste0("AsB = ", round(AsB, 4))
 		)
 	)
