@@ -148,10 +148,10 @@ ks_teste <- function(VarE) {
 	quan <- quantile(VarE)
 	AsB <- (quan[[4]] + quan[[2]] - (2 * quan[[3]])) / (quan[[4]] - quan[[2]])
 
-	cat("teste K-S:\n")
+	cat("K-S test\n")
 	cat("D = ", round(teste_KS$statistic, 4), "\n")
 	cat("p-valor = " , round(teste_KS$p.value, 4), "\n")
-	cat("Assimetria de Bowley:\n")
+	cat("Bowley's Skewness:\n")
 	cat("AsB = ", round(AsB, 4), "\n")
 }
 
