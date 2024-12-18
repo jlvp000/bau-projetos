@@ -196,9 +196,9 @@ gApre <- function(VarE, xlim, ylim, xlab, posicao1, posicao2){
 		xlab=xlab, ylab="", mgp=c(1.5, 0.7, 0), border=0, col="lightgrey", font.lab=2, font.axis=2,
 		las=1, cex.axis=1, xaxs="i", yaxs="i", bty="n")
 	#curva normal teorica
-	plot(function(x) dnorm(x, med, des), from=inf, to=sup, col="red", lty=4, lwd=2, add=TRUE)
+	plot(function(x) dnorm(x, med, des), from=inf, to=sup, lty=4, lwd=2, add=TRUE)
 	#legendas
-	legend(posicao1, "Theoretical Normal Distribution", col="red", lty=4, lwd=2, cex=1.2, bty="n")
+	legend(posicao1, "Theoretical Normal Distribution", lty=4, lwd=2, cex=1.2, bty="n")
 	legend(posicao2, ks_teste_g(VarE), cex=1.2, bty="n")
 }
 
