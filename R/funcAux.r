@@ -136,6 +136,35 @@ remOutGrup <- function(dados, indices_fatores, indice_resposta) {
 	return(dados_sem_outliers)
 }
 
+#-----------------------------------------------------------------------------------------
+# Função para gerar um data.frame com k grups a partir de intervalos fornecidos de n, média e desvio
+gerar_dados <- function(nGrp, intAmos, intMed, intDes) {
+	# Verificando se os argumentos são válidos
+	if(!is.numeric(nGrp) || length(nGrp) != 1){
+		stop("O argumento 'nGrp' deve ser numérico e de tamanho 1")
+	}
+	if(!is.numeric(intAmos) || length(intAmos) != 2){
+		stop("O argumento 'intAmos' deve ser numérico e de tamanho 2")
+	}
+	if(!is.numeric(intMed) || length(intMed) != 2){
+		stop("O argumento 'intMed' deve ser numérico e de tamanho 2")
+	}
+	if(!is.numeric(intDes) || length(intDes) != 2){
+		stop("O argumento 'intDes' deve ser numérico e de tamanho 2")
+	}
+
+	# Gerando dados para cada grupo
+	amN <- sample(intAmos[1]:intAmos[2], nGrp, replace = TRUE)
+	med <- runif(nGrp, intMed[1], intMed[2])
+	des <- runif(nGrp, intDes[1], intDes[2])
+
+	# Criando os dados finais
+	Grupo <- rep(paste("grupo", 1:nGrp), amN)
+	Valor <- unlist(mapply(rnorm, amN, med, des))
+
+	return(data.frame(Grupo, Valor))
+}
+
 #------------------------------------------------------------------------
 ## Função para teste de Kolmogorov-Smirnov e assimetria de Bowley
 ks_teste <- function(VarE) {
