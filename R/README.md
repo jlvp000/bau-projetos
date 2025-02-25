@@ -29,7 +29,7 @@
 
 | Argumentos | Descrição |
 | :--- | :--- |
-| vetor | um vetor numérico |
+| vetor | Um vetor numérico com mais de um elemento com dados de entrada |
 
 **Exemplos**
 
@@ -83,7 +83,7 @@ resEstSim(iris[, 1:4])
 
 | Argumentos | Descrição |
 | :--- | :--- |
-| vetor | um vetor número |
+| vetor | Um vetor numérico com mais de um elemento com dados de entrada |
 
 **Exemplos**
 
@@ -107,7 +107,7 @@ any(outliers)
 
 | Argumentos | Descrição |
 | :--- | :--- |
-| vetor | um vetor número |
+| vetor | Um vetor numérico com mais de um elemento com dados de entrada |
 
 **Exemplos**
 
@@ -164,6 +164,26 @@ boxplot(resposta ~ fator2, data=dados_limpos)
 ```
 
 <!-- -------------------------seção------------------------- -->
+<h2>gerar_dados()</h2>
+
+**Descrição:** Cria um data.frame com dados aleatórios e normalmente distribuido com k grupos apartir de intervalos fornecidos de n, média e desvio padrão.
+
+**Uso:** gerar_dados(nGrp, intAmos, intMed, intDes)
+
+| Argumentos | Descrição |
+| :--- | :--- |
+| nGrp | Vetor numérico de um elemento com número de grupos |
+| intAmos | Vetor numérico de dois elementos com intervalo do tamanho das amostras |
+| intMed | Vetor numérico de dois elementos com intervalo das médias dos grupos |
+| intDes | Vetor numérico de dois elementos com intervalo dos desvios padrões dos grupos |
+
+**Exemplos**
+
+```
+dados <- gerar_dados(nGrp = 7, intAmos = c(30, 40), intMed = c(200, 450), intDes = c(10, 20))
+```
+
+<!-- -------------------------seção------------------------- -->
 <h2>ks_teste()</h2>
 
 **Descrição:** Imprime os resultados do teste KS, incluindo a estatística D e o p-valor, bem como o valor da assimetria de Bowley.
@@ -172,7 +192,7 @@ boxplot(resposta ~ fator2, data=dados_limpos)
 
 | Argumentos | Descrição |
 | :--- | :--- |
-| vetor | um vetor número |
+| vetor | Um vetor numérico com mais de um elemento com dados de entrada |
 
 **Exemplos**
 
@@ -228,8 +248,8 @@ gApre(
 
 | Argumentos | Descrição |
 | :--- | :--- |
-| y_medido | Valores reais ou observados da variável resposta |
-| y_predito | Valores previstos ou estimados pela modelagem ou método de previsão |
+| y_medido | Vetor com os valores reais ou observados da variável resposta |
+| y_predito | Vetor com os valores previstos ou estimados pela modelagem ou método de previsão |
 
 
 **Exemplos**
