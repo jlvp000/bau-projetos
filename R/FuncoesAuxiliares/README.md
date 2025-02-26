@@ -18,7 +18,7 @@
 > [!NOTE]
 > Para conseguir usar as funções, baixe o arquivo com o seguinte código:
 > 
-> ```source("https://raw.githubusercontent.com/jlvp000/bau-projetos/main/R/funcAux.r")```
+> ```source("https://raw.githubusercontent.com/jlvp000/bau-projetos/main/R/FuncoesAuxiliares/funcAux.r")```
 
 <!-- -------------------------seção------------------------- -->
 <h2>resEst()</h2>
