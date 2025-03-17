@@ -4,7 +4,7 @@
 
 #-----------------------------------------------------------------------------------------
 # Função para gerar um resumo estatístico descritivo
-resEst <- function(vetor){
+resEst <- function(vetor) {
 	# Verifica se o vetor é numérico e contém pelo menos dois elementos
 	if (!is.numeric(vetor) || length(vetor) < 2) {
 		stop("O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
