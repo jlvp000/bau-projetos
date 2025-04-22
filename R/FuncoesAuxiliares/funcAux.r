@@ -248,3 +248,31 @@ res_r2_syx <- function(y_medido, y_predito) {
 }
 
 #-------------------------------------------------------------------------
+# AJUSTAR
+est_lme <- function(modelo, y) {
+	# Verifica se o objeto é um modelo lme
+	if(!inherits(modelo, "lme")) stop("O modelo deve ser do tipo 'lme'.")
+
+	# Verifica se y é um vetor numérico
+	if (!is.numeric(y)) stop("O argumento 'y' deve ser numérico.")
+
+	n <- length(y)
+	residuos <- y - fitted(modelo)
+
+	SQtot <- var(y) * (n - 1)
+	SQres <- sum(residuos^2)
+
+	Syx <- sqrt(SQres / (n - 2))
+	Syx_perc <- (Syx / mean(y)) * 100
+
+	R2 <- 1 - (SQres / SQtot)
+	R2_aj <- 1 - (((n - 1) / (n - length(fixef(modelo)))) * (1 - R2))
+
+	# Resultado em lista nomeada
+	return(list(
+		Syx = Syx,
+		Syx_percentual = Syx_perc,
+		R2 = R2,
+		R2_ajustado = R2_aj
+	))
+}
