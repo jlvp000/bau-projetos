@@ -232,31 +232,34 @@ gApre <- function(VarE, xlim, ylim, xlab, posicao1, posicao2){
 }
 
 #----------------------------------------------------------------------
-## Função para cálculo de resíduos e R² e Syx
-# AJUSTAR
+## Função para cálculo de resíduos e R² e Syx  (AJUSTAR)
+
 res_r2_syx <- function(y_medido, y_predito, n_par) {
+	# Verificações básicas
 	if (length(y_medido) != length(y_predito)) {
-		stop("Erro: Tamanho de y_medido e y_predito são diferentes!")
-	}
-	if (!is.numeric(n_par) || length(n_par) != 1) {
-		stop("Erro: Argumento n_par inválido")
+		stop("Erro: Tamanhos de 'y_medido' e 'y_predito' são diferentes.")
+  	}
+  	if (!is.numeric(n_par) || length(n_par) != 1 || n_par >= length(y_medido)) {
+		stop("Erro: 'n_par' deve ser um número único e menor que o número de observações.")
 	}
 
-	n  <- length(y_medido)
+	n <- length(y_medido)
 	residuos <- y_medido - y_predito
 	SQtot <- var(y_medido) * (n - 1)
 	SQres <- sum(residuos^2)
-	Syx <- sqrt(SQres / (n - 2))
+	Syx <- sqrt(SQres / (n - n_par))
 	Syx_perc <- (Syx / mean(y_medido)) * 100
 	R2 <- 1 - (SQres / SQtot)
 	R2_aj <- 1 - (((n - 1) / (n - n_par)) * (1 - R2))
-  
+
 	return(list(
 		Syx = Syx,
 		Syx_percentual = Syx_perc,
 		R2 = R2,
-		residuos = residuos)
-	)
+		R2_ajustado = R2_aj,
+		residuos = residuos
+	))
 }
+
 
 #-------------------------------------------------------------------------
