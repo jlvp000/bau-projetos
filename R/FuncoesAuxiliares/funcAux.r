@@ -233,46 +233,29 @@ gApre <- function(VarE, xlim, ylim, xlab, posicao1, posicao2){
 
 #----------------------------------------------------------------------
 ## Função para cálculo de resíduos e R² e Syx
-res_r2_syx <- function(y_medido, y_predito) {
+# AJUSTAR
+res_r2_syx <- function(y_medido, y_predito, n_par) {
 	if (length(y_medido) != length(y_predito)) {
 		stop("Erro: Tamanho de y_medido e y_predito são diferentes!")
 	}
-
+	if (!is.numeric(n_par) || length(n_par) != 1) {
+		stop("Erro: Argumento n_par inválido")
+	}
+	
 	residuos <- y_medido - y_predito
-	SST <- sum((y_medido - mean(y_medido))^2)
-	SSR <- sum(residuos^2)
-	R2 <- 1 - (SSR / SST)
-	Syx <- sqrt(SSR / (length(y_medido)-2))
-  
-	return(list(R2 = R2, Syx = Syx, residuos = residuos))
-}
-
-#-------------------------------------------------------------------------
-# AJUSTAR
-est_lme <- function(modelo, y) {
-	# Verifica se o objeto é um modelo lme
-	if(!inherits(modelo, "lme")) stop("O modelo deve ser do tipo 'lme'.")
-
-	# Verifica se y é um vetor numérico
-	if (!is.numeric(y)) stop("O argumento 'y' deve ser numérico.")
-
-	n <- length(y)
-	residuos <- y - fitted(modelo)
-
 	SQtot <- var(y) * (n - 1)
 	SQres <- sum(residuos^2)
-
 	Syx <- sqrt(SQres / (n - 2))
 	Syx_perc <- (Syx / mean(y)) * 100
-
 	R2 <- 1 - (SQres / SQtot)
 	R2_aj <- 1 - (((n - 1) / (n - length(fixef(modelo)))) * (1 - R2))
-
-	# Resultado em lista nomeada
+  
 	return(list(
 		Syx = Syx,
 		Syx_percentual = Syx_perc,
 		R2 = R2,
-		R2_ajustado = R2_aj
-	))
+		residuos = residuos)
+	)
 }
+
+#-------------------------------------------------------------------------
