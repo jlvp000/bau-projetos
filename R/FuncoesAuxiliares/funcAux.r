@@ -243,21 +243,21 @@ res_r2_syx <- function(y_medido, y_predito, n_par) {
 		stop("Erro: 'n_par' deve ser um número único e menor que o número de observações.")
 	}
 
-	n <- length(y_medido)
-	med <- mean(y_medido)
+	       n <- length(y_medido)
+	     med <- mean(y_medido)
 	residuos <- y_medido - y_predito
-	SQres <- sum(residuos^2)
-	SQtot <- sum((y_medido - med)^2)
-	Syx <- sqrt(SQres / (n - n_par))
-	Syx_perc <- (Syx / mean(y_medido)) * 100
-	R2 <-  1 - (SQres / SQtot)
-	R2_aj <- 1 - (((n - 1) / (n - n_par)) * (1 - R2))
+	   SQres <- sum(residuos^2)
+	   SQtot <- sum((y_medido - med)^2)
+	     Syx <- sqrt(SQres / (n - n_par))
+	Syx_perc <- Syx / med * 100
+	      R2 <- 1 - SQres / SQtot
+	   R2_aj <- 1 - (1 - R2) * (n - 1) / (n - n_par)
 
 	return(list(
 		Syx = Syx,
-		Syx_percentual = Syx_perc,
+		Syx_perc = Syx_perc,
 		R2 = R2,
-		R2_ajustado = R2_aj,
+		R2_aj = R2_aj,
 		residuos = residuos
 	))
 }
