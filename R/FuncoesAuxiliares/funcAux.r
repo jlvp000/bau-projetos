@@ -239,7 +239,7 @@ res_r2_syx <- function(y_medido, y_predito, n_par) {
 	if (length(y_medido) != length(y_predito)) {
 		stop("Erro: Tamanhos de 'y_medido' e 'y_predito' são diferentes.")
   	}
-  	if (!is.numeric(n_par) || length(n_par) != 1 || n_par >= length(y_medido)) {
+  	if (!is.numeric(n_par) || length(n_par) != 1 || n_par > length(y_medido)) {
 		stop("Erro: 'n_par' deve ser um número único e menor que o número de observações.")
 	}
 
