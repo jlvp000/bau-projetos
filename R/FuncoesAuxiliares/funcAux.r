@@ -244,12 +244,14 @@ res_r2_syx <- function(y_medido, y_predito, n_par) {
 	}
 
 	n <- length(y_medido)
+	med <- mean(y_medido)
 	residuos <- y_medido - y_predito
-	SQtot <- var(y_medido) * (n - 1)
 	SQres <- sum(residuos^2)
+	SQexp <- sum((y_predito - med)^2)
+	SQtot <- SQexp + SQres
 	Syx <- sqrt(SQres / (n - n_par))
 	Syx_perc <- (Syx / mean(y_medido)) * 100
-	R2 <- 1 - (SQres / SQtot)
+	R2 <- SQres / SQtot
 	R2_aj <- 1 - (((n - 1) / (n - n_par)) * (1 - R2))
 
 	return(list(
