@@ -250,8 +250,8 @@ res_r2_syx <- function(y_medido, y_predito, n_par) {
 	   SQtot <- sum((y_medido - med)^2)
 	     Syx <- sqrt(SQres / (n - n_par))
 	Syx_perc <- Syx / med * 100
-	      R2 <- 1 - SQres / SQtot
-	   R2_aj <- 1 - (1 - R2) * (n - 1) / (n - n_par)
+	      R2 <- 1 - (SQres / SQtot)
+	   R2_aj <- 1 - (((1 - R2) * (n - 1)) / (n - n_par))
 
 	return(list(
 		Syx = Syx,
