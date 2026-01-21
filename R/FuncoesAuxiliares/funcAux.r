@@ -183,7 +183,7 @@ ks_teste <- function(VarE) {
 	cat("Bowley's Skewness:\n")
 	cat("AsB = ", round(AsB, 4), "\n")
 
-	reurn(estatistic_ks = teste_KS$statistic, p_value = teste_KS$p.value, AsB = AsB)
+	return(c(estatistic_ks = teste_KS$statistic, p_value = teste_KS$p.value, AsB = AsB))
 }
 
 ks_teste_g <- function(VarE) {
@@ -266,4 +266,5 @@ res_r2_syx <- function(y_medido, y_predito, n_par) {
 
 
 #-------------------------------------------------------------------------
+
 
