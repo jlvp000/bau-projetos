@@ -167,7 +167,7 @@ gerar_dados <- function(nGrp, intAmos, intMed, intDes) {
 
 #------------------------------------------------------------------------
 ## Função para teste de Kolmogorov-Smirnov e assimetria de Bowley
-ks_teste <- function(VarE) {
+ks_teste <- function(VarE, show = FALSE){
 
 	# Teste de Kolmogorov-Smirnov
 	VarE_jittered <- jitter(VarE)
@@ -177,11 +177,13 @@ ks_teste <- function(VarE) {
 	quan <- quantile(VarE)
 	AsB <- (quan[[4]] + quan[[2]] - (2 * quan[[3]])) / (quan[[4]] - quan[[2]])
 
-	cat("K-S test\n")
-	cat("D = ", round(teste_KS$statistic, 4), "\n")
-	cat("p-valor = " , round(teste_KS$p.value, 4), "\n")
-	cat("Bowley's Skewness:\n")
-	cat("AsB = ", round(AsB, 4), "\n")
+	if(show = TRUE){
+		cat("K-S test\n")
+		cat("D = ", round(teste_KS$statistic, 4), "\n")
+		cat("p-valor = " , round(teste_KS$p.value, 4), "\n")
+		cat("Bowley's Skewness:\n")
+		cat("AsB = ", round(AsB, 4), "\n")
+	}
 
 	return(c(estatistic_ks = teste_KS$statistic, p_value = teste_KS$p.value, AsB = AsB))
 }
@@ -266,5 +268,6 @@ res_r2_syx <- function(y_medido, y_predito, n_par) {
 
 
 #-------------------------------------------------------------------------
+
 
 
