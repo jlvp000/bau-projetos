@@ -177,7 +177,7 @@ ks_teste <- function(VarE, show = FALSE){
 	quan <- quantile(VarE)
 	AsB <- (quan[[4]] + quan[[2]] - (2 * quan[[3]])) / (quan[[4]] - quan[[2]])
 
-	if(show = TRUE){
+	if(show == TRUE){
 		cat("K-S test\n")
 		cat("D = ", round(teste_KS$statistic, 4), "\n")
 		cat("p-valor = " , round(teste_KS$p.value, 4), "\n")
@@ -268,6 +268,7 @@ res_r2_syx <- function(y_medido, y_predito, n_par) {
 
 
 #-------------------------------------------------------------------------
+
 
 
 
