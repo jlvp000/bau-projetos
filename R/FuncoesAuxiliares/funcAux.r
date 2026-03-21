@@ -242,20 +242,25 @@ res_r2_syx <- function(y_medido, y_predito, n_par) {
 	# Verificações básicas
 	if (length(y_medido) != length(y_predito)) {
 		stop("Erro: Tamanhos de 'y_medido' e 'y_predito' são diferentes.")
-  	}
-  	if (!is.numeric(n_par) || length(n_par) != 1 || n_par >= length(y_medido)) {
+	}
+	if (!is.numeric(n_par) || length(n_par) != 1 || n_par >= length(y_medido)) {
 		stop("Erro: 'n_par' deve ser um número único e menor que o número de observações.")
 	}
 
-	       n <- length(y_medido)
-	     med <- mean(y_medido)
+	n <- length(y_medido)
+	med <- mean(y_medido)
+
 	residuos <- y_medido - y_predito
-	   SQres <- sum(residuos^2)
-	   SQtot <- sum((y_medido - med)^2)
-	     Syx <- sqrt(SQres / (n - n_par))
+
+	SQres <- sum(residuos^2)
+	SQexp <- sum((y_predito - med)^2)
+	SQtot <- SQexp + SQres
+
+	Syx <- sqrt(SQres / (n - n_par))
 	Syx_perc <- Syx / med * 100
-	      R2 <- 1 - (SQres / SQtot)
-	   R2_aj <- 1 - (((1 - R2) * (n - 1)) / (n - n_par))
+
+	R2 <- SQexp / SQtot
+	R2_aj <- 1 - ((SQres / (n - n_par)) / (SQtot / (n - 1)))
 
 	return(list(
 		Syx = Syx,
