@@ -470,10 +470,10 @@ graf_resid <- function(y_pred, residuos, x.lim, y.lim, x.lim.mult, y.lim.mult, x
 	}
 
 	if(missing(x.lab))
-		x.lab <- expression(hat(y))
+		x.lab <- expression(bold(hat(y)))
 
 	if(missing(y.lab))
-		y.lab <- expression(epsilon)
+		y.lab <- expression(bold(epsilon))
 
 	if(!(is.expression(x.lab) || (is.character(x.lab) && length(x.lab) == 1)))
 		stop("Erro: 'x.lab' deve ser expression ou caractere unitário")
