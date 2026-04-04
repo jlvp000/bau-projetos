@@ -270,39 +270,99 @@ mult_lim <- function(vetor, mult = c(2, 3, 5, 10)){
 }
 
 
-#-------------------------------------------------------------------------
-## Função do Gráfico de apresentação (histograma + metricas) de variáveis/resíduos
+#----------------------------------------------------------------------
+## Função para gráfico de apresentação (histograma + métricas) de variáveis/resíduos
 
-gApre <- function(VarE, xlim, ylim, xlab, posicao1, posicao2){
+gApre <- function(dados, limite_x, limite_y, rotulo_x, pos_legenda1, pos_legenda2){
 
 	# --- Verificações de entrada ---
+	if(missing(dados))
+		stop("Erro: forneça 'dados'")
+	
+	if(!is.numeric(dados) || length(dados) < 2)
+		stop("Erro: 'dados' deve ser numérico e conter pelo menos 2 observações")
+	
+	if(missing(limite_x))
+		stop("Erro: forneça 'limite_x'")
+	
+	if(!is.numeric(limite_x) || length(limite_x) != 2)
+		stop("Erro: 'limite_x' deve ser um vetor numérico de tamanho 2")
+	
+	if(limite_x[1] >= limite_x[2])
+		stop("Erro: 'limite_x[1]' deve ser menor que 'limite_x[2]'")
+	
+	if(missing(limite_y))
+		stop("Erro: 'limite_y' não foi informado.")
+	
+	if(!is.numeric(limite_y) || length(limite_y) != 1)
+		stop("Erro: 'limite_y' deve ser um valor numérico único")
+	
+	if(limite_y <= 0)
+		stop("Erro: 'limite_y' deve ser positivo")
+	
+	if(missing(rotulo_x))
+		stop("Erro: 'rotulo_x' não foi informado")
+	
+	if(!is.character(rotulo_x) || length(rotulo_x) != 1)
+		stop("Erro: 'rotulo_x' deve ser um texto (string)")
 	# ---
 
-	 n  <- length(VarE)
-	inf <- min(VarE)
-	sup <- max(VarE)
-	med <- mean(VarE)
-	des <- sd(VarE)
+	# posições das legendas
+	if(missing(pos_legenda1) || missing(pos_legenda2))
+		stop("Erro: posições das legendas não foram informadas")
+	
+	# (aceita tanto texto quanto coordenadas numéricas)
+	validar_posicao <- function(pos){
+		if(is.character(pos)) return(TRUE)
+		if(is.numeric(pos) && length(pos) == 2) return(TRUE)
+		stop("Erro: posição de legenda deve ser texto (ex: 'topright') ou coordenadas numéricas c(x, y)")
+	}
+	
+	validar_posicao(pos_legenda1)
+	validar_posicao(pos_legenda2)
 
-	    k <- ceiling((2*(n^(1/3))))
-	   h1 <- (sup-inf)/k
-	legH1 <- seq(inf, sup, h1)
+	# --- Estatísticas básicas ---
+	n_obs       <- length(dados)
+	valor_min   <- min(dados)
+	valor_max   <- max(dados)
+	media       <- mean(dados)
+	desvio_pad  <- sd(dados)
 
-	# --- plot ---
+	# --- Definição das classes do histograma ---
+	n_classes   <- ceiling(2 * (n_obs^(1/3)))
+	largura_cls <- (valor_max - valor_min) / n_classes
+	
+	if(largura_cls <= 0)
+		stop("Erro: não foi possível calcular classes do histograma (dados constantes?)")
+	
+	breaks_hist <- seq(valor_min, valor_max, largura_cls)
+
+	# --- Plot ---
 	windows(7, 4)
-	op <- par(mar=c(3, 3.2, 1, 1))
-		hist(VarE, prob=T, xlim=xlim, ylim=c(0, ylim), breaks=legH1, right=F, xaxp=c(xlim[1], xlim[2], 5), yaxp=c(0, ylim, 6), main="",
-			xlab=xlab, ylab="", mgp=c(1.5, 0.7, 0), border=0, col="lightgrey", font.lab=2, font.axis=2,
-			las=1, cex.axis=1, xaxs="i", yaxs="i", bty="n")
-		#curva normal teorica
-		plot(function(x) dnorm(x, med, des), from=inf, to=sup, lty=4, lwd=2, add=TRUE)
-		#legendas
-		legend(posicao1, "Theoretical Normal Distribution", lty=4, lwd=2, cex=1.2, bty="n")
-		legend(posicao2, ks_teste_g(VarE), cex=1.2, bty="n")
+	op <- par(mar = c(3, 3.2, 1, 1))
+	
+	hist(dados, prob = TRUE,
+		xlim = limite_x, ylim = c(0, limite_y), breaks = breaks_hist, right = FALSE,
+		xaxp = c(limite_x[1], limite_x[2], 5), yaxp = c(0, limite_y, 6),
+		xlab = rotulo_x, ylab = "", main = "",
+		mgp = c(1.5, 0.7, 0), border = 0, col = "lightgrey",
+		font.lab = 2, font.axis = 2,
+		las = 1, cex.axis = 1,
+		xaxs = "i", yaxs = "i", bty = "n"
+	)
+
+	# --- Curva normal teórica ---
+	curve(dnorm(x, mean = media, sd = desvio_pad), from = valor_min, to = valor_max, lty = 4, lwd = 2, add = TRUE)
+
+	# --- Legendas ---
+	legend(pos_legenda1, "Distribuição Normal Teórica", lty = 4, lwd = 2, cex = 1.2, bty = "n")
+
+	legend(pos_legenda2, ks_teste_g(dados), cex = 1.2, bty = "n")
+
 	par(op)
 }
 
-		 
+
 #----------------------------------------------------------------------
 ## Função para cálculo de resíduos e R² e Syx
 
