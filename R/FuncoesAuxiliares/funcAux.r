@@ -251,7 +251,7 @@ mult_lim <- function(vetor, mult = c(2, 3, 5, 10)){
 
 	# --- Verificações de entrada ---
 	if(missing(vetor))
-		stop("Erro: vetor ausente")3
+		stop("Erro: vetor ausente")
 
 	if(!is.numeric(vetor))
 		stop("Erro: vetor deve ser numérico")
