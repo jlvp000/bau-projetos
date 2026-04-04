@@ -493,7 +493,8 @@ graf_resid <- function(y_pred, residuos, x.lim, y.lim, x.lim.mult, y.lim.mult, x
 
 	# --- Plot ---
 	op <- par(mar = c(5, 5, 1, 1), mgp = c(3, 0.8, 0), las = 1)
-	plot(1:10, type = "n", xlim = x.lim, ylim = y.lim, xlab = x.lab, ylab = y.lab)
+	plot(1:10, type = "n", xlim = x.lim, ylim = y.lim, xlab = x.lab, ylab = y.lab,
+		 cex = 0.9, cex.axis = 1.6, cex.lab = 1.8, font.lab = 2, font.axis = 2)
 	abline(h = 0, lty = 2, lwd = 2, col = "red")
 	points(y_pred, residuos, pch = 16)
 
