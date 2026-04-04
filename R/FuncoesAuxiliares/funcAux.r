@@ -4,11 +4,13 @@
 
 #-----------------------------------------------------------------------------------------
 # Função para gerar um resumo estatístico descritivo
+
 resEst <- function(vetor) {
-	# Verifica se o vetor é numérico e contém pelo menos dois elementos
-	if (!is.numeric(vetor) || length(vetor) < 2) {
-		stop("O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
-	}
+
+	# --- Verifica se o vetor é numérico e contém pelo menos dois elementos ---
+	if (!is.numeric(vetor) || length(vetor) < 2) 
+		stop("Erro: O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
+	# ---
 
 	tamanho <- length(vetor)
 	mediana <- median(vetor)
@@ -40,9 +42,17 @@ resEst <- function(vetor) {
 	return(resumo)
 }
 
+
 #-----------------------------------------------------------------------------------------
 ## Função para estatísticas descritivas simples de um data.frame
+
 resEstSim <- function(data) {
+
+	# --- Verifica se o vetor é numérico e contém pelo menos dois elementos ---
+	if (!is.numeric(data) || length(data) < 2) 
+		stop("Erro: O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
+	# ---
+	
 	est <- data.frame(
 		minimo = apply(data, 2, min, na.rm = TRUE),
 		mediana = apply(data, 2, median, na.rm = TRUE),
@@ -53,13 +63,16 @@ resEstSim <- function(data) {
 	return(round(est, 4))
 }
 
+
 #-----------------------------------------------------------------------------------------
 # Função para identificar valores atípicos (outliers) em um vetor
+
 deteOut <- function(vetor) {
-	# Verifica se o vetor é numérico e contém pelo menos dois elementos
-	if (!is.numeric(vetor) || length(vetor) < 2) {
-		stop("O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
-	}
+
+	# --- Verifica se o vetor é numérico e contém pelo menos dois elementos
+	if (!is.numeric(vetor) || length(vetor) < 2)
+		stop("Erro: O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
+	# ---
 
 	# Calcula o primeiro e o terceiro quartis
 	primeiro_quartil <- quantile(vetor, probs = 0.25)
@@ -77,13 +90,16 @@ deteOut <- function(vetor) {
 	return(vetor < limite_inferior | vetor > limite_superior)
 }
 
+
 #-----------------------------------------------------------------------------------------
 # Função para remover outliers de um vetor
+
 remOut <- function(vetor) {
-	# Verifica se o vetor é numérico e contém pelo menos dois elementos
-	if (!is.numeric(vetor) || length(vetor) < 2) {
-		stop("O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
-	}
+	
+	# --- Verifica se o vetor é numérico e contém pelo menos dois elementos ---
+	if (!is.numeric(vetor) || length(vetor) < 2)
+		stop("Erro: O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
+	# ---
 
 	# Identifica outliers
 	indicadores_outliers <- deteOut(vetor)
@@ -92,21 +108,22 @@ remOut <- function(vetor) {
 	return(vetor[!indicadores_outliers])
 }
 
+
 #-----------------------------------------------------------------------------------------
 # Função para remover outliers de um conjunto de dados agrupados por fatores
+
 remOutGrup <- function(dados, indices_fatores, indice_resposta) {
-	# Verificar se o argumento 'dados' é um dataframe
-	if (!is.data.frame(dados)) {
-		stop("O argumento 'dados' deve ser um objeto do tipo 'data.frame'")
-	}
-	# Verificar se os índices são numéricos
-	if (!is.numeric(indices_fatores) || !is.numeric(indice_resposta)) {
-		stop("Os argumentos 'indices_fatores' e 'indice_resposta' devem ser numéricos")
-	}
-	# Verificar se os índices de colunas são válidos
-	if (any(indices_fatores > ncol(dados)) || indice_resposta > ncol(dados)) {
-		stop("Índices de colunas são inválidos")
-	}
+	
+	# --- Verificações de entrada ---
+	if (!is.data.frame(dados)) 
+		stop("Erro: 'dados' deve ser um objeto do tipo 'data.frame'")
+
+	if (!is.numeric(indices_fatores) || !is.numeric(indice_resposta))
+		stop("Erro: 'indices_fatores' e 'indice_resposta' devem ser numéricos")
+
+	if (any(indices_fatores > ncol(dados)) || indice_resposta > ncol(dados))
+		stop("Erro: Índices de colunas são inválidos")
+	# ---
 
 	# Inicializar matriz para contar outliers por nível dos fatores
 	contagem_outliers <- matrix(ncol = length(indices_fatores), nrow = nrow(dados), data = 0)
@@ -136,22 +153,25 @@ remOutGrup <- function(dados, indices_fatores, indice_resposta) {
 	return(dados_sem_outliers)
 }
 
+
 #-----------------------------------------------------------------------------------------
 # Função para gerar um data.frame com k grups a partir de intervalos fornecidos de n, média e desvio
+
 gerar_dados <- function(nGrp, intAmos, intMed, intDes) {
-	# Verificando se os argumentos são válidos
-	if(!is.numeric(nGrp) || length(nGrp) != 1){
-		stop("O argumento 'nGrp' deve ser numérico e de tamanho 1")
-	}
-	if(!is.numeric(intAmos) || length(intAmos) != 2){
-		stop("O argumento 'intAmos' deve ser numérico e de tamanho 2")
-	}
-	if(!is.numeric(intMed) || length(intMed) != 2){
-		stop("O argumento 'intMed' deve ser numérico e de tamanho 2")
-	}
-	if(!is.numeric(intDes) || length(intDes) != 2){
-		stop("O argumento 'intDes' deve ser numérico e de tamanho 2")
-	}
+
+	# --- Verificando se os argumentos são válidos ---
+	if(!is.numeric(nGrp) || length(nGrp) != 1)
+		stop("Erro: 'nGrp' deve ser numérico e de tamanho 1")
+
+	if(!is.numeric(intAmos) || length(intAmos) != 2)
+		stop("Erro: 'intAmos' deve ser numérico e de tamanho 2")
+
+	if(!is.numeric(intMed) || length(intMed) != 2)
+		stop("Erro: 'intMed' deve ser numérico e de tamanho 2")
+
+	if(!is.numeric(intDes) || length(intDes) != 2)
+		stop("Erro: 'intDes' deve ser numérico e de tamanho 2")
+	# ---
 
 	# Gerando dados para cada grupo
 	amN <- sample(intAmos[1]:intAmos[2], nGrp, replace = TRUE)
@@ -165,10 +185,18 @@ gerar_dados <- function(nGrp, intAmos, intMed, intDes) {
 	return(data.frame(Grupo, Valor))
 }
 
+
 #------------------------------------------------------------------------
 ## Função para teste de Kolmogorov-Smirnov e assimetria de Bowley
+
+# Somente estatísticas
 ks_teste <- function(VarE, show = FALSE){
 
+	# --- Verificações de entrada
+	if (!is.numeric(VarE) || length(VarE) < 2)
+		stop("Erro: O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
+	# ---
+	
 	# Teste de Kolmogorov-Smirnov
 	VarE_jittered <- jitter(VarE)
 	teste_KS <- ks.test(VarE_jittered, "pnorm", mean(VarE), sd(VarE))
@@ -188,7 +216,13 @@ ks_teste <- function(VarE, show = FALSE){
 	return(c(estatistic_ks = teste_KS$statistic, p_value = teste_KS$p.value, AsB = AsB))
 }
 
+# Para apresentação em gráficos
 ks_teste_g <- function(VarE) {
+
+	# --- Verificações de entrada
+	if (!is.numeric(VarE) || length(VarE) < 2)
+		stop("Erro: O argumento de entrada deve ser um vetor numérico e conter mais de um elemento")
+	# ---
 
 	# Teste de Kolmogorov-Smirnov 
 	VarE_jittered <- jitter(VarE)
@@ -209,9 +243,40 @@ ks_teste_g <- function(VarE) {
 	)
 }
 
+
 #-------------------------------------------------------------------------
-## Função do Gráfico de apresentação
+## Função para encontrar múltiplos (2, 3, 5, 10) para limites em gráficos
+
+mult_lim <- function(vetor, mult = c(2, 3, 5, 10)){
+
+	# --- Verificações de entrada ---
+	if(missing(vetor))
+		stop("Erro: vetor ausente")3
+
+	if(!is.numeric(vetor))
+		stop("Erro: vetor deve ser numérico")
+	# ---
+
+	menor <- min(vetor, na.rm = TRUE)
+	maior <- max(vetor, na.rm = TRUE)
+
+	resultado <- lapply(mult, function(m){
+		c(floor(menor / m) * m, ceiling(maior / m) * m)
+	})
+
+	names(resultado) <- paste0("m", mult)
+
+	return(resultado)
+}
+
+
+#-------------------------------------------------------------------------
+## Função do Gráfico de apresentação (histograma + metricas) de variáveis/resíduos
+
 gApre <- function(VarE, xlim, ylim, xlab, posicao1, posicao2){
+
+	# --- Verificações de entrada ---
+	# ---
 
 	 n  <- length(VarE)
 	inf <- min(VarE)
@@ -223,29 +288,36 @@ gApre <- function(VarE, xlim, ylim, xlab, posicao1, posicao2){
 	   h1 <- (sup-inf)/k
 	legH1 <- seq(inf, sup, h1)
 
+	# --- plot ---
 	windows(7, 4)
-	par(mar=c(3, 3.2, 1, 1))
-	hist(VarE, prob=T, xlim=xlim, ylim=c(0, ylim), breaks=legH1, right=F, xaxp=c(xlim[1], xlim[2], 5), yaxp=c(0, ylim, 6), main="",
-		xlab=xlab, ylab="", mgp=c(1.5, 0.7, 0), border=0, col="lightgrey", font.lab=2, font.axis=2,
-		las=1, cex.axis=1, xaxs="i", yaxs="i", bty="n")
-	#curva normal teorica
-	plot(function(x) dnorm(x, med, des), from=inf, to=sup, lty=4, lwd=2, add=TRUE)
-	#legendas
-	legend(posicao1, "Theoretical Normal Distribution", lty=4, lwd=2, cex=1.2, bty="n")
-	legend(posicao2, ks_teste_g(VarE), cex=1.2, bty="n")
+	op <- par(mar=c(3, 3.2, 1, 1))
+		hist(VarE, prob=T, xlim=xlim, ylim=c(0, ylim), breaks=legH1, right=F, xaxp=c(xlim[1], xlim[2], 5), yaxp=c(0, ylim, 6), main="",
+			xlab=xlab, ylab="", mgp=c(1.5, 0.7, 0), border=0, col="lightgrey", font.lab=2, font.axis=2,
+			las=1, cex.axis=1, xaxs="i", yaxs="i", bty="n")
+		#curva normal teorica
+		plot(function(x) dnorm(x, med, des), from=inf, to=sup, lty=4, lwd=2, add=TRUE)
+		#legendas
+		legend(posicao1, "Theoretical Normal Distribution", lty=4, lwd=2, cex=1.2, bty="n")
+		legend(posicao2, ks_teste_g(VarE), cex=1.2, bty="n")
+	par(op)
 }
 
+		 
 #----------------------------------------------------------------------
-## Função para cálculo de resíduos e R² e Syx  (AJUSTAR)
+## Função para cálculo de resíduos e R² e Syx
 
 res_r2_syx <- function(y_medido, y_predito, n_par) {
-	# Verificações básicas
-	if (length(y_medido) != length(y_predito)) {
+
+	# --- Verificações de entrada ---
+	if(missing(y_medido) || missing(y_predito) || missing(n_par))
+		stop("Erro: forneça 'y_medido', 'y_predito' e 'n_par'")
+
+	if (length(y_medido) != length(y_predito))
 		stop("Erro: Tamanhos de 'y_medido' e 'y_predito' são diferentes.")
-	}
-	if (!is.numeric(n_par) || length(n_par) != 1 || n_par >= length(y_medido)) {
+
+	if (!is.numeric(n_par) || length(n_par) != 1 || n_par >= length(y_medido))
 		stop("Erro: 'n_par' deve ser um número único e menor que o número de observações.")
-	}
+	# ---
 
 	n <- length(y_medido)
 	med <- mean(y_medido)
@@ -269,6 +341,108 @@ res_r2_syx <- function(y_medido, y_predito, n_par) {
 		R2_aj = R2_aj,
 		residuos = residuos
 	))
+}
+
+
+#----------------------------------------------------------------------
+## Função para apresentar um gráfico de resíduos
+
+graf_resid <- function(y_pred, residuos, x.lim, y.lim, x.lim.mult, y.lim.mult, x.lab, y.lab, texto, pos.texto){
+
+	# --- Verificações de entrada ---
+	if(missing(y_pred) || missing(residuos))
+		stop("Erro: forneça 'y_pred' e 'residuos'")
+
+	if(length(y_pred) != length(residuos))
+		stop("Erro: 'y_pred' e 'residuos' devem ter o mesmo tamanho")
+
+	if(!is.numeric(y_pred) || !is.numeric(residuos))
+		stop("Erro: 'y_pred' e 'residuos' devem ser numéricos")
+
+	if(!missing(x.lim) && !missing(x.lim.mult))
+		stop("Erro: usar somente 'x.lim' ou 'x.lim.mult' para limite em x")
+
+	if(!missing(y.lim) && !missing(y.lim.mult))
+		stop("Erro: usar somente 'y.lim' ou 'y.lim.mult' para limite em y")
+
+	if(!missing(x.lim.mult)){
+		if(!(x.lim.mult %in% c(2, 3, 5, 10)) || length(x.lim.mult) > 1)
+			stop("Erro: 'x.lim.mult' deve ser um desses: c(2, 3, 5, 10)")
+	}
+
+	if(!missing(y.lim.mult)){
+		if(!(y.lim.mult %in% c(2, 3, 5, 10)) || length(y.lim.mult) > 1)
+			stop("Erro: 'y.lim.mult' deve ser um desses: c(2, 3, 5, 10)")
+	}
+
+	# Limites eixo x
+	if(!missing(x.lim)){
+		if(!is.numeric(x.lim) || length(x.lim) != 2)
+			stop("Erro: 'x.lim' deve ser um vetor numérico de tamanho 2")
+
+		if(x.lim[1] >= x.lim[2])
+			stop("Erro: 'x.lim[1]' deve ser menor que 'x.lim[2]'")
+
+		va <- range(y_pred, na.rm = TRUE)
+		if(x.lim[1] > va[1] || x.lim[2] < va[2])
+			stop("Erro: 'x.lim' deve cobrir todo o intervalo de 'y_pred'")
+	} else if(!missing(x.lim.mult)){
+		x.lim <- mult_lim(y_pred)[[paste0("m", x.lim.mult)]]
+	} else {
+		x.lim <- range(y_pred, na.rm = TRUE)
+	}
+
+	# Limites eixo y
+	if(!missing(y.lim)){
+		if(!is.numeric(y.lim) || length(y.lim) != 2)
+			stop("Erro: 'y.lim' deve ser um vetor numérico de tamanho 2")
+
+		if(y.lim[1] >= y.lim[2])
+			stop("Erro: 'y.lim[1]' deve ser menor que 'y.lim[2]'")
+
+		va <- range(residuos, na.rm = TRUE)
+		if(x.lim[1] > va[1] || x.lim[2] < va[2])
+			stop("Erro: 'y.lim' deve cobrir todo o intervalo de 'residuos'")
+	} else if(!missing(y.lim.mult)){
+		y.lim <- mult_lim(residuos)[[paste0("m", y.lim.mult)]]
+	} else {
+		y.lim <- range(residuos, na.rm = TRUE)
+	}
+
+	if(missing(x.lab))
+		x.lab <- expression(hat(y))
+
+	if(missing(y.lab))
+		y.lab <- expression(epsilon)
+
+	if(!(is.expression(x.lab) || (is.character(x.lab) && length(x.lab) == 1)))
+		stop("Erro: 'x.lab' deve ser expression ou caractere unitário")
+
+	if(!(is.expression(y.lab) || (is.character(y.lab) && length(y.lab) == 1)))
+		stop("Erro: 'y.lab' deve ser expression ou caractere unitário")
+
+	if(!missing(texto)){
+		if(missing(pos.texto)) stop("Erro: forneça 'pos.texto'")
+
+		if(!missing(pos.texto)){
+			if(!(pos.texto %in% c("bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right", "center")))
+				stop("Erro: 'pos.texto' deve ser um dentre “bottomright”, “bottom”, “bottomleft”, “left”, “topleft”, “top”, “topright”, “right”, “center”")
+		}
+	}
+	# ---
+
+	# --- Plot ---
+	op <- par(mar = c(5, 5, 1, 1), mgp = c(3, 0.8, 0), las = 1)
+	plot(1:10, type = "n", xlim = x.lim, ylim = y.lim, xlab = x.lab, ylab = y.lab)
+	abline(h = 0, lty = 2, lwd = 2, col = "red")
+	points(y_pred, residuos, pch = 16)
+
+	if(!missing(texto)){
+		legend(pos.texto, legend = texto, bty = "n")
+	}
+
+	par(op)
+
 }
 
 
