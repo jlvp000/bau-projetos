@@ -508,7 +508,33 @@ graf_resid <- function(y_pred, residuos, x.lim, y.lim, x.lim.mult, y.lim.mult, x
 
 
 #-------------------------------------------------------------------------
+# Função para apresentar um gráfico limpo
+
+graf_limp <- function(){
+	op <- par(mar = c(0, 0, 0, 0))
+	on.exit(par(op))
+	plot(1:10, 11:20, type = "n", xlab = "", ylab = "", xaxt = "n", yaxt = "n", bty = "n")
+}
 
 
+#-------------------------------------------------------------------------
+# Função para apresentar um gráfico limpo com um texto
+
+graf_txt <- function(texto, posicao = "center", ...){
+
+	# --- Verificações de entrada ---
+	if(missing(texto) || is.null(texto) || any(is.na(texto)) || any(texto == "")) stop("Erro: forneça 'texto' válido")
+
+	pos_vald <- c("bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right", "center")
+
+	if(!(posicao %in% pos_vald)) stop(paste("Erro: 'posicao' deve ser um entre:", paste(pos_vald, collapse = ", ")))
+
+	# --- Plot ---
+	graf_limp()
+	legend(posicao, legend = texto, bty = "n", ...)
+}
+
+
+#-------------------------------------------------------------------------
 
 
