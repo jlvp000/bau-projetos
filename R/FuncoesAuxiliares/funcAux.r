@@ -536,5 +536,53 @@ graf_txt <- function(texto, posicao = "center", ...){
 
 
 #-------------------------------------------------------------------------
+# Função para montar uma equação linear apartir de um modelo
 
+ger_equ_lin <- function(modelo, variaveis = NULL, resposta = "Y"){
+
+	# --- Verificações de entrada ---
+	if (!inherits(modelo, c("lm", "glm"))) stop("O objeto não é um modelo válido.")
+  
+	est <- summary(modelo)$coefficients
+  
+	if (!is.null(variaveis)) {
+		if (length(coef(modelo)) != length(variaveis)) {
+			stop("Erro: número de variáveis não corresponde aos coeficientes")
+		}
+		nomes <- variaveis
+	} else {
+		nomes <- rownames(est)
+		nomes[1] <- ""  # intercepto
+	}
+
+	# --- coeficientes ---
+	coefs <- round(est[, 1], 3)
+	pvals <- est[, 4]
+
+	s.pval <- ifelse(pvals <= 0.05, "*", "")
+	sinais <- ifelse(coefs < 0, " - ", " + ")
+
+	# --- termos ---
+	termos <- ifelse(
+		nomes == "",
+		paste0(abs(coefs), s.pval),
+		paste0(nomes, "·", abs(coefs), s.pval)
+	)
+	termos <- paste0(sinais, termos)
+
+	# --- primeiro termo (sem + e sem variável se intercepto) ---
+	termos[1] <- if (nomes[1] == "") {
+		paste0(ifelse(coefs[1] < 0, "- ", ""), abs(coefs[1]), s.pval[1])
+	} else {
+		paste0(ifelse(coefs[1] < 0, "- ", ""), abs(coefs[1]), s.pval[1], "·", nomes[1])
+	}
+
+	# --- equação final ---
+	equacao <- paste0(resposta, " = ", paste(termos, collapse = ""))
+
+	return(equacao)
+}
+
+
+#-------------------------------------------------------------------------
 
