@@ -350,7 +350,7 @@ graf_resid <- function(y_pred, residuos, x.lim, y.lim, x.lim.mult, y.lim.mult, x
 		if(x.lim[1] >= x.lim[2]) stop("Erro: 'x.lim[1]' deve ser menor que 'x.lim[2]'")
 
 		va <- range(y_pred, na.rm = TRUE)
-		if(x.lim[1] > va[1] || x.lim[2] < va[2]) stop("Erro: 'x.lim' deve cobrir todo o intervalo de 'y_pred'")
+		if(abs(x.lim[1]) < abs(va[1]) || abs(x.lim[2]) < abs(va[2])) stop("Erro: 'x.lim' deve cobrir todo o intervalo de 'y_pred'")
 	} else if(!missing(x.lim.mult)){
 		x.lim <- mult_lim(y_pred)[[paste0("m", x.lim.mult)]]
 	} else {
@@ -362,7 +362,7 @@ graf_resid <- function(y_pred, residuos, x.lim, y.lim, x.lim.mult, y.lim.mult, x
 		if(y.lim[1] >= y.lim[2]) stop("Erro: 'y.lim[1]' deve ser menor que 'y.lim[2]'")
 
 		va <- range(residuos, na.rm = TRUE)
-		if(x.lim[1] > va[1] || x.lim[2] < va[2]) stop("Erro: 'y.lim' deve cobrir todo o intervalo de 'residuos'")
+		if(abs(y.lim[1]) < abs(va[1]) || abs(y.lim[2]) < abs(va[2])) stop("Erro: 'y.lim' deve cobrir todo o intervalo de 'residuos'")
 	} else if(!missing(y.lim.mult)){
 		y.lim <- mult_lim(residuos)[[paste0("m", y.lim.mult)]]
 	} else {
