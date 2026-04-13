@@ -173,8 +173,8 @@ res_r2_syx <- function(y_medido, y_predito, n_par) {
 
 	residuos <- y_medido - y_predito
 
-	SQres <- sum(residuos^2)
-	SQexp <- sum((y_predito - med)^2)
+	SQres <- sum(residuos^2, na.rm = TRUE)
+	SQexp <- sum((y_predito - med)^2, na.rm = TRUE)
 	SQtot <- SQexp + SQres
 
 	Syx <- sqrt(SQres / (n - n_par))
